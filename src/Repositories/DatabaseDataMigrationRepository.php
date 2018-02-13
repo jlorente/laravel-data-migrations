@@ -10,14 +10,13 @@
 namespace Jlorente\DataMigrations\Repositories;
 
 use Illuminate\Database\Migrations\DatabaseMigrationRepository;
-use Illuminate\Database\Migrations\MigrationRepositoryInterface;
 
 /**
- * DataMigrationRepository class.
+ * DatabaseDataMigrationRepository class.
  * 
  * @author José Lorente <jose.lorente.martin@gmail.com>
  */
-class DataMigrationRepository extends DatabaseMigrationRepository implements MigrationRepositoryInterface
+class DatabaseDataMigrationRepository extends DatabaseMigrationRepository
 {
     
 }

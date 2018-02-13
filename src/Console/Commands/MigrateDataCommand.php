@@ -6,10 +6,10 @@
  * @copyright   José Lorente
  * @version     1.0
  */
+
 namespace Jlorente\DataMigrations\Console\Commands;
 
 use Illuminate\Database\Console\Migrations\MigrateCommand;
-use Illuminate\Database\Migrations\Migrator;
 use Jlorente\DataMigrations\Console\Traits\DataMigrationCommandTrait;
 
 /**
@@ -27,7 +27,7 @@ class MigrateDataCommand extends MigrateCommand
      *
      * @var string
      */
-    protected $signature = 'migrate {--database= : The database connection to use.}
+    protected $signature = 'migrate-data {--database= : The database connection to use.}
                 {--force : Force the operation to run when in production.}
                 {--path= : The path of migrations files to be executed.}
                 {--pretend : Dump the SQL queries that would be run.}
@@ -42,15 +42,19 @@ class MigrateDataCommand extends MigrateCommand
     protected $description = 'Run the data migrations';
 
     /**
-     * Create a new data migration command instance.
+     * Prepare the migration database for running.
      *
-     * @param  \Illuminate\Database\Migrations\Migrator  $migrator
      * @return void
      */
-    public function __construct(Migrator $migrator)
+    protected function prepareDatabase()
     {
-        parent::__construct($migrator);
-        $this->migrator = \App::make('migrator.data');
+        $this->migrator->setConnection($this->option('database'));
+
+        if (!$this->migrator->repositoryExists()) {
+            $this->call(
+                    'migrate-data:install', ['--database' => $this->option('database')]
+            );
+        }
     }
 
 }

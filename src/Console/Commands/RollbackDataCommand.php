@@ -28,7 +28,7 @@ class RollbackDataCommand extends RollbackCommand
      *
      * @var string
      */
-    protected $signature = 'migrate:rollback-data';
+    protected $signature = 'migrate-data:rollback';
 
     /**
      * The console command description.
@@ -36,17 +36,5 @@ class RollbackDataCommand extends RollbackCommand
      * @var string
      */
     protected $description = 'Rollback the last database data migration';
-
-    /**
-     * Create a new data migration rollback command instance.
-     *
-     * @param  \Illuminate\Database\Migrations\Migrator  $migrator
-     * @return void
-     */
-    public function __construct(Migrator $migrator)
-    {
-        parent::__construct($migrator);
-        $this->migrator = \App::make('migrator.data');
-    }
 
 }

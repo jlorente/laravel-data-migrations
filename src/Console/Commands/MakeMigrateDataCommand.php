@@ -10,6 +10,7 @@
 namespace Jlorente\DataMigrations\Console\Commands;
 
 use Illuminate\Database\Console\Migrations\MigrateMakeCommand;
+use Jlorente\DataMigrations\Console\Traits\DataMigrationCommandTrait;
 
 /**
  * MakeMigrateDataCommand class.
