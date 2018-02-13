@@ -1,0 +1,22 @@
+{
+    "name": "jlorente/laravel-data-migrations",
+    "description": "An extension to allow you to separate data migrations from structure migrations",
+    "license": "MIT",
+    "authors": [{
+            "name": "Jose Lorente",
+            "email": "jose.lorente.martin@gmail.com"
+        }],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Jlorente\\DataMigrations\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Jlorente\\DataMigrations\\DataMigrationsServiceProvider"
+            ]
+        }
+    }
+}
