@@ -8,7 +8,8 @@
  */
 return [
     // The name of the table where data migrations are stored.
-    'migrations_data' => 'migrations_data',
+    'table' => 'migrations_data'
+
     // Flag if a migration rollback should delete the data_migrations table.
-    'rollback_table' => false,
+    , 'rollback_table' => false
 ];

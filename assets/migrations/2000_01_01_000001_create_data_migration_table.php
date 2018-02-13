@@ -20,9 +20,9 @@ class CreateDataMigrationTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('data_migrations')) {
+        if (!Schema::hasTable(config('data-migrations.table'))) {
 
-            Schema::create('data_migrations', function (Blueprint $table) {
+            Schema::create(config('data-migrations.table'), function (Blueprint $table) {
                 $table->string('migration');
                 $table->integer('batch');
             });
@@ -37,7 +37,7 @@ class CreateDataMigrationTable extends Migration
     public function down()
     {
         if (config('data-migrations.rollback_table')) {
-            Schema::dropIfExists('data_migrations');
+            Schema::dropIfExists(config('data-migrations.table'));
         }
     }
 

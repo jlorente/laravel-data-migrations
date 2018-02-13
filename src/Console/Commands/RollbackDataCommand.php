@@ -10,7 +10,6 @@
 namespace Jlorente\DataMigrations\Console\Commands;
 
 use Illuminate\Database\Console\Migrations\RollbackCommand;
-use Illuminate\Database\Migrations\Migrator;
 use Jlorente\DataMigrations\Console\Traits\DataMigrationCommandTrait;
 
 /**

@@ -6,6 +6,7 @@
  * @copyright   José Lorente
  * @version     1.0
  */
+
 namespace Jlorente\DataMigrations\Console\Traits;
 
 /**
