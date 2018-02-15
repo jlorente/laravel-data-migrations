@@ -2,15 +2,14 @@ Data Migrations for Laravel
 ===========================
 This extension allows you to separate data migrations from structure migrations.
 
-Installation
-------------
+## Installation
 
 The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
 
 With Composer installed, you can then install the extension using the following commands:
 
 ```bash
-$ php composer.phar require jlorente/laravel-data-migrations "*"
+$ php composer.phar require jlorente/laravel-data-migrations
 ```
 
 or add 
@@ -18,35 +17,60 @@ or add
 ```json
 ...
     "require": {
-        // ... other configurations ...
         "jlorente/laravel-data-migrations": "*"
     }
 ```
 
 to the ```require``` section of your `composer.json` file.
 
-### Configuration
+## Configuration
 
 1. Register the ServiceProvider in your config/app.php service provider list. This step can be skipped in Laravel 5.5+
 
+config/app.php
 ```php
-\Jlorente\DataMigrations\DataMigrationsServiceProvider::class
+return [
+    //other stuff
+    'providers' => [
+        //other stuff
+        \Jlorente\DataMigrations\DataMigrationsServiceProvider::class,
+    ];
+];
 ```
 
 2. Publish the new assets.
 ```shell
 php artisan vendor:publish --tag=data-migrations
 ```
+This will create the default migrations directory and the config/data-migrations.php file.
 
-### Usage
+## Usage
 
-You can use this package the same way as the regular migrations package. The data migrations will be stored in a different folder.
+By default, the table used to store the data migrations is "migrations_data" table. You 
+can change the table on the config/data-migrations.php file.
 
-`make:data-migration` creates a new data migration. The firts time you use it the data migrations table will be created.
+The data migrations will be stored in the migrations_data folder of the database path if no 
+path is specified in the command execution.
 
-`migrate:data` runs the data migration
+The available commands of the package are:
 
-`migrate:rollback-data` rolls back the migration.
+*Create migration command*
+```shell
+php artisan make:data-migration [name] [--path=]
+```
+The firts time you use it the data migrations table will be created.
+
+*Run migration command*
+```shell
+php artisan migrate-data [--path=]
+```
+
+*Rollback migration command*
+```shell
+php artisan migrate-data:rollback [--path=]
+```
+
+The behavior of the migrations is the same as the regular migrations.
 
 ## License 
 Copyright &copy; 2018 José Lorente Martín <jose.lorente.martin@gmail.com>.
