@@ -38,16 +38,11 @@ to the ```require``` section of your `composer.json` file.
 php artisan vendor:publish --tag=data-migrations
 ```
 
-3. Run the database migration in order to create the data migrations table.
-```shell
-php artisan migrate
-```
-
 ### Usage
 
 You can use this package the same way as the regular migrations package. The data migrations will be stored in a different folder.
 
-`make:data-migration` creates a new data migration.
+`make:data-migration` creates a new data migration. The firts time you use it the data migrations table will be created.
 
 `migrate:data` runs the data migration
 
