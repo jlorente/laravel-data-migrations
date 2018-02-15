@@ -63,13 +63,27 @@ class DataMigrationsServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->registerConfig();
+            $this->registerFolder();
         }
     }
 
+    /**
+     * Registers the config file for the package.
+     */
     protected function registerConfig()
     {
         $this->publishes([
-            __DIR__ . '/../config/data-migrations.php' => config_path('data-migrations.php'),
+            __DIR__ . '/../assets/config/data-migrations.php' => config_path('data-migrations.php'),
+                ], 'data-migrations');
+    }
+
+    /**
+     * Registers the default folder of where the data migrations will be created.
+     */
+    protected function registerFolder()
+    {
+        $this->publishes([
+            __DIR__ . '/../assets/database/migrations_data' => database_path('data_migrations'),
                 ], 'data-migrations');
     }
 
@@ -80,14 +94,17 @@ class DataMigrationsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->registerRepository();
-        $this->registerMigrator();
-        $this->registerArtisanCommands();
+        $this->bindRepository();
+        $this->bindMigrator();
+        $this->bindArtisanCommands();
 
         $this->commands($this->commands);
     }
 
-    protected function registerRepository()
+    /**
+     * Binds the repository used by the data migrations.
+     */
+    protected function bindRepository()
     {
         $this->app->singleton('migration.data.repository', function ($app) {
             $table = config('data-migrations.table');
@@ -96,7 +113,10 @@ class DataMigrationsServiceProvider extends ServiceProvider
         });
     }
 
-    protected function registerMigrator()
+    /**
+     * Binds the migrator used by the data migrations.
+     */
+    protected function bindMigrator()
     {
         $this->app->singleton('migrator.data', function($app) {
             $repository = $app['migration.data.repository'];
@@ -105,7 +125,10 @@ class DataMigrationsServiceProvider extends ServiceProvider
         });
     }
 
-    protected function registerArtisanCommands()
+    /**
+     * Binds the commands to execute the data migrations.
+     */
+    protected function bindArtisanCommands()
     {
         $this->app->singleton('command.migrate-data', function ($app) {
             return new MigrateDataCommand($app['migrator.data']);
