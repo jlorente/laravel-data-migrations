@@ -37,10 +37,9 @@ class DataMigrationsServiceProvider extends ServiceProvider
      *
      * @var array
      */
-    protected $commands = [
-        'MigrateData' => 'command.migrate-data'
-        , 'MigrateDataInstall' => 'command.migrate-data.install'
-        , 'MigrateDataRollback' => 'command.migrate-data.rollback'
+    protected $provides = [
+        'migrator.data'
+        , 'migration.data.repository'
     ];
 
     /**
@@ -48,8 +47,11 @@ class DataMigrationsServiceProvider extends ServiceProvider
      *
      * @var array
      */
-    protected $devCommands = [
-        'MigrateDataMake' => 'command.migrate-data.make'
+    protected $commands = [
+        'command.migrate-data'
+        , 'command.migrate-data.install'
+        , 'command.migrate-data.rollback'
+        , 'command.migrate-data.make'
     ];
 
     /**
@@ -82,7 +84,7 @@ class DataMigrationsServiceProvider extends ServiceProvider
         $this->registerMigrator();
         $this->registerArtisanCommands();
 
-        $this->commands($this->provides());
+        $this->commands($this->commands);
     }
 
     protected function registerRepository()
@@ -133,7 +135,7 @@ class DataMigrationsServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return array_merge(array_values($this->commands), array_values($this->devCommands));
+        return array_merge($this->provides, $this->commands);
     }
 
 }
