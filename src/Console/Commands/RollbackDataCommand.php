@@ -27,7 +27,7 @@ class RollbackDataCommand extends RollbackCommand
      *
      * @var string
      */
-    protected $signature = 'migrate-data:rollback';
+    protected $name = 'migrate-data:rollback';
 
     /**
      * The console command description.
