@@ -24,7 +24,7 @@ trait DataMigrationCommandTrait
      */
     protected function getMigrationPath()
     {
-        if (!is_null($targetPath = $this->input->getOption('path'))) {
+        if (is_string($targetPath = $this->input->getOption('path'))) {
             return $this->laravel->basePath() . '/' . $targetPath;
         } else {
             return $this->laravel->databasePath() . DIRECTORY_SEPARATOR . 'migrations_data';
