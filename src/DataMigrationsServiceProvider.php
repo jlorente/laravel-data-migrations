@@ -83,7 +83,7 @@ class DataMigrationsServiceProvider extends ServiceProvider
     protected function registerFolder()
     {
         $this->publishes([
-            __DIR__ . '/../assets/database/migrations_data' => database_path('data_migrations'),
+            __DIR__ . '/../assets/database/migrations_data' => database_path('migrations_data'),
                 ], 'data-migrations');
     }
 
