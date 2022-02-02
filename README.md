@@ -8,6 +8,8 @@ The preferred way to install this extension is through [composer](http://getcomp
 
 With Composer installed, you can then install the extension using the following commands:
 
+**NOTE:** Until laravel 7.x use version 1.x. From laravel 8.0 and later use 2.x
+
 ```bash
 $ php composer.phar require jlorente/laravel-data-migrations
 ```
