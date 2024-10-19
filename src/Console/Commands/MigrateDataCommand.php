@@ -33,7 +33,8 @@ class MigrateDataCommand extends MigrateCommand
                 {--realpath : Indicate any provided migration file paths are pre-resolved absolute paths}
                 {--pretend : Dump the SQL queries that would be run}
                 {--seed : Indicates if the seed task should be re-run}
-                {--step : Force the migrations to be run so they can be rolled back individually}';
+                {--step : Force the migrations to be run so they can be rolled back individually}
+                {--graceful : Return a successful exit code even if an error occurs}';
 
     /**
      * The console command description.
