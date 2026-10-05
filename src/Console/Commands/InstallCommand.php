@@ -20,17 +20,20 @@ class InstallCommand extends BaseInstallCommand
 {
 
     /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'migrate-data:install';
-
-    /**
      * The console command description.
      *
      * @var string
      */
     protected $description = 'Create the data migration repository';
+
+    /**
+     * Rename the command after Laravel resolves its inherited name or signature.
+     */
+    protected function configure(): void
+    {
+        parent::configure();
+
+        $this->setName('migrate-data:install');
+    }
 
 }

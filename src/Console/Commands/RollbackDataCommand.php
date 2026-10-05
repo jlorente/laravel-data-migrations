@@ -23,17 +23,20 @@ class RollbackDataCommand extends RollbackCommand
     use DataMigrationCommandTrait;
 
     /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $name = 'migrate-data:rollback';
-
-    /**
      * The console command description.
      *
      * @var string
      */
     protected $description = 'Rollback the last database data migration';
+
+    /**
+     * Rename the command after Laravel resolves its inherited name or signature.
+     */
+    protected function configure(): void
+    {
+        parent::configure();
+
+        $this->setName('migrate-data:rollback');
+    }
 
 }
